@@ -1,0 +1,42 @@
+
+VIDEO CAPTURE ET ENREGISTREMENT 	
+-------------------------------------------------------------
+cv2.VideoCapture(0) : https://docs.opencv.org/3.4/d8/dfe/classcv_1_1VideoCapture.html#a57c0e81e83e60f36c83027dc2a188e80
+
+https://docs.opencv.org/3.4/d4/d15/group__videoio__flags__base.html#gaeb8dd9c89c10a5c63c139bf7c4f5704d
+
+
+Here are some common property identifiers and their corresponding numbers in OpenCV:
+
+    cv2.CAP_PROP_POS_MSEC (0): Current position of the video file in milliseconds.
+    cv2.CAP_PROP_POS_FRAMES (1): 0-based index of the frame to be decoded/captured next.
+    cv2.CAP_PROP_FRAME_WIDTH (3): Width of the frames in the video stream.
+    cv2.CAP_PROP_FRAME_HEIGHT (4): Height of the frames in the video stream.
+    cv2.CAP_PROP_FPS (5): Frame rate of the video stream.
+    cv2.CAP_PROP_FOURCC (6): 4-character code of codec.
+    cv2.CAP_PROP_FRAME_COUNT (7): Number of frames in the video file.
+    cv2.CAP_PROP_FORMAT (8): Format of the Mat objects returned by retrieve().
+    cv2.CAP_PROP_MODE (9): Backend-specific value indicating the current capture mode.
+    cv2.CAP_PROP_BRIGHTNESS (10): Brightness of the image (only for cameras).
+    cv2.CAP_PROP_CONTRAST (11): Contrast of the image (only for cameras).
+    cv2.CAP_PROP_SATURATION (12): Saturation of the image (only for cameras).
+    cv2.CAP_PROP_HUE (13): Hue of the image (only for cameras).
+    cv2.CAP_PROP_GAIN (14): Gain of the image (only for cameras).
+    cv2.CAP_PROP_EXPOSURE (15): Exposure (only for cameras).
+    cv2.CAP_PROP_CONVERT_RGB (16): Boolean flags indicating whether images should be converted to RGB.
+    cv2.CAP_PROP_WHITE_BALANCE_BLUE_U (17): Currently unsupported.
+    cv2.CAP_PROP_RECTIFICATION (18): Rectification flag for stereo cameras (note: only supported by DC1394 v 2.x backend currently).
+
+
+
+cv2.VideoWriter : https://docs.opencv.org/4.x/dd/d9e/classcv_1_1VideoWriter.html
+
+
+
+
+
+FACE DETECTION 
+-----------------------
+neural network : https://docs.opencv.org/4.x/d0/db7/tutorial_js_table_of_contents_dnn.html
+
+Haar cascade : https://docs.opencv.org/4.x/d2/d99/tutorial_js_face_detection.html

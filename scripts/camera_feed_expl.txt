@@ -1,0 +1,18 @@
+
+while 1 
+	si q je sort de la boucle 
+
+	si je clique sur space dans le keyboard :
+
+		je change l'etat du boutton 
+
+		si l'etat fu boutton est true :
+
+			 recording = true ,j'initialise le capturing device , le video writer 
+
+		si non : recording = False , je ferme la capture dev  si il ya et le video w
+
+	si rec = true  :
+		je lis les frames et je les write 
+
+   
