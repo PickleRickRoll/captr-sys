@@ -1,6 +1,6 @@
 remarque varier : 
 ---------------
-molette pour changer les frames rate et qui cliques
+molette pour changer les frames rate et qui cliques-done
 rfid carte etudiant
 integrer un ecran pour voir la connection les fps , le marqueur differents etc ...
 indicateur de la zone de capture 

@@ -56,6 +56,7 @@ class VideoRecorder:
                     self.rec = True
                     nom_fichier = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
                     video = cv.VideoCapture(0) 
+                    video.set(5,fps)
                     if not video.isOpened():
                         print("Erreur de lecture du fichier")
                         return

@@ -1,0 +1,59 @@
+power managment
+----------------
+
+Raspberry Pi Zero: ~140 mA (idle) to ~230 mA (under load) at 5V
+
+   
+Webcam: 500 mA at 5V
+
+    
+LCD Screen: ~100 mA at 3.3V
+
+
+LEDs (5): ~20 mA per LED at 5V (total 100 mA)
+
+
+Rotary Encoder: Negligible
+
+    
+USB Hub: static consumption ~ 1mA , output : 2A max at 5V (on all usb ports on self-Power Mode)
+
+
+Total: 230 mA + 500 mA + 100 mA = 830 mA ≈ 0.9 A at 5V
+-----
+
+We are going to aim for 1A at 5v to ensure smooth operation 
+
+
+Total power = 5*1 = 5 W
+-----------
+
+With a battery of 5000 mAh and 3.7 V --> 18.5 Wh / 5 W = 3.7 hours of run time  
+
+
+connecting the usb hub to the raspberry pi
+-------------------------------------------
+
+There are two ways of connecting the USB hub to the Raspberry Pi:
+
+1-Direct Connection:
+        This involves attaching the hub to the Pi directly and connecting the Pi to the power bank. This approach minimizes the surface area taken by the electronic components but comes with some difficulties such as compatibility issues and potential Wi-Fi interference.
+
+2-Indirect Connection:
+        This involves plugging the hub into the power bank via the white JST XH2.54 2-pin connector on the board and then connecting the Raspberry Pi to the hub via a USB-micro-USB connector. Advantages of this method include no Wi-Fi interference and easier implementation. However, the disadvantage is that it requires a larger surface area.
+
+
+
+Power Supply
+------------
+
+To supply the system with continuous power, we suggest two solutions:
+
+1-Using a Power Bank:
+
+   This approach is easy to incorporate and use. We want to be able to plug the system into power and recharge the battery at the same time. We also want to be able to unplug the system and continue using it without any interruption. Therefore, using a power bank seems like a good choice.
+
+
+2-Using a Li-Po Battery Connected to a PowerBoost 1000 Charger:
+
+   This option involves using a Li-Po battery connected to a power boost like the [PowerBoost 1000 Charger - Rechargeable 5V Lipo USB Boost @ 1A - 1000C](https://www.adafruit.com/product/2465#description). With this method, we have more control over the system. We will be able to see how much battery we still have left and could attach LED indicators when the battery drops below 20%. However, this approach is more complicated to use (compatibility) and is much costlier to buy a battery and a power boost than just a simple power bank that comes with all of that.

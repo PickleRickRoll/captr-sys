@@ -1,0 +1,50 @@
+https://hal.sorbonne-universite.fr/tel-04148164/document
+---------------------------------------------------------
+Key Demands and Features
+
+    Multiplicity and Variety of Capture Units:
+        Multiple Units: The system should consist of multiple capture units distributed throughout the fabrication workshop to ensure comprehensive coverage.
+        Variety of Units: Different units should have varied properties to address the specific needs of different activities. This includes variations in camera quality, size, and functionalities to suit different tasks.
+
+    Delegation of Control:
+        Customizable Automation: Users should be able to set constraints for automation before starting their activities. This allows them to delegate control to the system while maintaining oversight of specific parameters.
+        Feedback and Feedforward Mechanisms: The system should provide real-time feedback on automated parameters (e.g., visual cues like color changes on controlled wheels) and indicate the areas that devices can occupy or capture.
+
+    Privacy and Ethics:
+        Visibility of Capturing Activities: It is crucial to ensure that ongoing capturing activities are visible to everyone in the workshop. This can be achieved through mechanisms like glow auras or line lasers indicating the capture area.
+        Control over Capture Depth: Users should have control over the depth of the captured area, potentially using depth sensors to blur backgrounds or focus on specific areas.
+        Automatic Privacy Features: Implement features to automatically blur faces or other sensitive information if unintended captures occur.
+
+    Centralized and Accessible System:
+        Networked Units: All capture units should be connected to a local network for centralized control and easy access to captured content.
+        Contextual Metadata: Each captured content should be enriched with metadata such as which unit recorded it and its location, enhancing the utility of the captured data.
+
+    Support for Social and Ethical Practices:
+        Encouraging Ethical Use: The system should support ethical practices by allowing makers to share content that promotes safety and helps others learn and improve.
+        Respect for Intellectual Property: Address concerns about intellectual property by ensuring consent is obtained before capturing and sharing others' work.
+
+Potential System Design
+
+    Capture Units: Develop small, lightweight, and customizable capture units equipped with high-quality cameras. Ensure these units are easy to build and use materials commonly available in workshops.
+    Automation Settings: Include settings for users to automate certain functions (e.g., start/stop recording, focus adjustments) based on predefined constraints.
+    Privacy Controls: Implement privacy controls such as automatic blurring of backgrounds or sensitive areas and visual indicators of capture zones.
+    Central Repository: Use a local network to store and manage all captured content, with easy access for users to retrieve and review data.
+    User Interface: Design an intuitive interface that allows users to set preferences, monitor ongoing capturing activities, and manage recorded content.
+
+By integrating these features, the system will effectively meet the diverse needs of makers while respecting privacy and ethical considerations .
+
+
+-------------------------------------------------
+
+p39 Facilitate the creation of resources during the activity.
+
+p40 Facilitate the creation of resources during the project
+
+p41 Encourage the completeness of information.
+
+p45 Tools to support makers in the creation of knowledge resources
+
+p56 table 
+
+p58 Capturing and transforming the resources
+
