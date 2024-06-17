@@ -1,6 +1,509 @@
 remarque varier : 
 ---------------
+
+tache a faire
+--------------
+
+
 molette pour changer les frames rate et qui cliques-done
 rfid carte etudiant
 integrer un ecran pour voir la connection les fps , le marqueur differents etc ...
 indicateur de la zone de capture 
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+connection
+--------------
+Step 1: Preparing the SD Card
+
+    Download the Raspberry Pi Imager:
+        Visit the Raspberry Pi website and download the Raspberry Pi Imager for Windows.
+        Install and run the software.
+
+    Insert the SD Card:
+        Insert your micro SD card into the SD card reader and connect it to your Windows 11 PC.
+
+    Write the Operating System:
+        In the Raspberry Pi Imager, click "CHOOSE OS" and select "Raspberry Pi OS (32-bit)" or another version as needed.
+        Click "CHOOSE SD CARD" and select your micro SD card.
+        Click "WRITE" to write the OS to the SD card. This will take a few minutes.
+
+Step 2: Configure the Pi for Headless Operation
+
+    Enable SSH:
+        After the writing process is complete, you need to enable SSH to allow remote connections. Eject and reinsert the SD card into your PC.
+        Open the SD card in File Explorer and create an empty file named ssh (with no file extension) in the root directory of the SD card. This file enables SSH on boot.
+
+    Set Up Wi-Fi:
+        Create a file named wpa_supplicant.conf in the root directory of the SD card.
+        Open wpa_supplicant.conf in a text editor (like Notepad) and add the following content, replacing YOUR_SSID and YOUR_PASSWORD with your Wi-Fi network's SSID and password:
+
+        plaintext
+
+        country=FR
+        ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+        update_config=1
+        network={
+            ssid="YOUR_SSID"
+            psk="YOUR_PASSWORD"
+            key_mgmt=WPA-PSK
+        }
+
+        Save and close the file.
+
+Step 3: Boot the Raspberry Pi
+
+    Insert the SD Card into the Raspberry Pi:
+        Safely eject the SD card from your PC and insert it into the Raspberry Pi Zero 2W.
+
+    Power On the Raspberry Pi:
+        Connect the Raspberry Pi to a power source using a micro USB cable.
+
+Step 4: Connect to the Raspberry Pi from Windows 11
+
+    Find the Raspberry Pi’s IP Address:
+        Use your router’s web interface to find the Raspberry Pi’s IP address, or use a network scanning tool like Advanced IP Scanner.
+
+    Connect via SSH:
+        Open Command Prompt or PowerShell on your Windows 11 PC.
+        Use the SSH command to connect to your Raspberry Pi. Replace pi with your username (default is pi), and x.x.x.x with your Raspberry Pi’s IP address:
+
+        shell
+
+        ssh pi@x.x.x.x
+
+        When prompted, enter the default password (raspberry if you haven't changed it).
+
+
+	To find the ip address of the pi if you are using hotspot from an iphone , scan for ip addresses , with addresses raging from 172.20.10.0  --- 172.20.10.15
+
+Step 5: Final Setup
+
+    Update and Upgrade:
+        Once logged in, update your Raspberry Pi’s software:
+
+        shell
+
+    sudo apt update
+    sudo apt upgrade
+
+Change Default Password:
+
+    For security, change the default password:
+
+    shell
+
+    passwd
+
+Configure Further as Needed:
+
+    You can use raspi-config to perform additional configuration:
+
+    shell
+
+sudo raspi-config
+
+
+Check System Resource Usage: In the new SSH session, check the system's resource usage to see if it's overloaded:
+
+shell
+
+top
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+problemes
+------------
+so iwas trying to update but everyt tim the pi freezes so i decided to take a new sd card flash the pi os 64 bit on it (old one was 32 bit) and now i get this message :
+
+Ping statistics for 172.20.10.4:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 6ms, Maximum = 113ms, Average = 32ms
+PS C:\Users\admin> ssh 172.20.10.4
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ED25519 key sent by the remote host is
+SHA256:V+qB6UChyimRn+LquGUGpyYMDRyrfYmC4EAJ6Z3E3pI.
+Please contact your system administrator.
+Add correct host key in C:\\Users\\admin/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in C:\\Users\\admin/.ssh/known_hosts:3
+Host key for 172.20.10.4 has changed and you have requested strict checking.
+Host key verification failed.
+PS C:\Users\admin>
+ChatGPT
+
+The warning message you're seeing is because your SSH client detected that the host key of the Raspberry Pi has changed. This is expected when you switch to a new SD card with a fresh installation, as the new system generates new host keys.
+
+To resolve this, you need to remove the old host key entry from your known_hosts file on your Windows PC. Here’s how to do it:
+Steps to Remove the Old Host Key
+
+    Open PowerShell on your Windows PC.
+
+    Edit the known_hosts File:
+        You can use a text editor like Notepad to open the known_hosts file located at C:\Users\admin\.ssh\known_hosts.
+        Alternatively, you can use the following PowerShell command to remove the offending key:
+
+    powershell
+
+    ssh-keygen -R 172.20.10.4
+
+    This command removes the old key for the specified IP address from the known_hosts file.
+
+    Verify the Entry Removal:
+        If you prefer to do it manually, open C:\Users\admin\.ssh\known_hosts in Notepad and remove the line that corresponds to 172.20.10.4. Save and close the file.
+
+Connect Again
+
+After removing the old host key entry, try connecting again:
+
+powershell
+
+ssh pi@172.20.10.4
+
+You should be prompted to accept the new host key, which you can confirm. Here’s what it typically looks like:
+
+plaintext
+
+The authenticity of host '172.20.10.4 (172.20.10.4)' can't be established.
+ECDSA key fingerprint is SHA256:V+qB6UChyimRn+LquGUGpyYMDRyrfYmC4EAJ6Z3E3pI.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+
+Type yes and press Enter. This will add the new host key to your known_hosts file, and you should be able to connect without any issues.
+################################################################
+
+https://github.com/RPi-Distro/repo/issues/353
+
+https://forums.raspberrypi.com/viewtopic.php?t=359240
+
+
+##############################################################
+https://www.reddit.com/r/selfhosted/comments/zytzk5/help_me_choose_an_os_for_my_raspberry_pi_4/
+
+https://forums.raspberrypi.com/viewtopic.php?t=264816
+
+
+##############################################################3
+Method 1: Using Command Line
+
+    Plug in the USB Drive:
+    Insert the USB drive into one of the USB ports on your Raspberry Pi.
+
+    Identify the USB Drive:
+    You need to find the device name of your USB drive. You can do this by running the following command:
+
+    bash
+
+lsblk
+
+Look for entries representing your USB drive. It might be something like /dev/sda1 or /dev/sdb1.
+
+Mount the USB Drive:
+Create a directory where you want to mount the USB drive. For example, let's create a directory named usb in your home directory:
+
+bash
+
+mkdir ~/usb
+
+Then, mount the USB drive to that directory:
+
+bash
+
+sudo mount /dev/sdX1 ~/usb
+
+Replace /dev/sdX1 with the actual device name of your USB drive.
+
+Copy Files:
+You can now copy files from your USB drive to any location on your Raspberry Pi. For example, to copy all files from the USB drive to your home directory:
+
+bash
+
+cp -r ~/usb/* ~/
+
+Unmount the USB Drive (Optional):
+After you have finished transferring files, you can unmount the USB drive:
+
+bash
+
+sudo umount ~/usb
+##########################################################################
+
+Sure, here's a summary of the steps to handle flash drives through the terminal, including finding the USB device, mounting it, copying files, and unmounting it:
+
+    Finding the USB Device:
+        Use the lsblk command to list all block devices.
+        Identify the USB device in the output, typically listed under /dev/sdX where X is a letter corresponding to the device.
+
+    Mounting the USB Device:
+        Create a mount point directory using mkdir, for example: mkdir ~/usb.
+        Mount the USB device to the mount point directory using sudo mount /dev/sdXN ~/usb, replacing /dev/sdXN with the actual device file.
+
+    Navigating to the USB Device:
+        Change your current directory to the mount point directory using cd, for example: cd ~/usb.
+
+    Copying Files:
+        Use the cp command to copy files from your system to the USB device, for example: cp /path/to/source/file ~/usb.
+
+    Unmounting the USB Device:
+        Ensure you're not in the USB mount point directory.
+        Unmount the USB device using sudo umount ~/usb.
+
+    Cleaning Up (Optional):
+        Remove the mount point directory if no longer needed using rmdir, for example: rmdir ~/usb.
+
+Remember to replace placeholders like /dev/sdXN with the actual device file and adjust paths and commands as needed based on your system configuration.
+
+Once you've followed these steps, you should be able to effectively manage flash drives through the terminal. If you encounter any issues or have further questions, feel free to ask!
+###################################################################################
+
+Copy Files to the USB Device:
+
+    Use the cp command followed by the source file(s) or directory and the destination directory (the mounted USB device).
+    For a single file:
+
+    bash
+
+cp filename /path/to/mounted/usb
+
+For multiple files or all files in a directory:
+
+bash
+
+cp -r * /path/to/mounted/usb
+
+##################################################################
+
+
+https://stackoverflow.com/questions/75542224/runtimeerror-failed-to-add-edge-detection-on-raspberrypi
+##################################################################
+pip is used to download and install packages directly from PyPI. PyPI is hosted by Python Software Foundation. It is a specialized package manager that only deals with python packages.
+
+apt-get is used to download and install packages from Ubuntu repositories which are hosted by Canonical.
+
+Some of the differences between installing python packages from apt-get and pip are as follows:
+
+    Canonical only provides packages for selected python modules. Whereas, PyPI hosts a much broader range of python modules. So, there are a lot of python modules which you won't be able to install using apt-get.
+
+    Canonical only hosts a single version of any package (generally the latest or the one released in recent past). So, with apt-get we cannot decide the version of python-package that we want. pip helps us in this situation. We can install any version of the package that has previously been uploaded on PyPI. This is extremely helpful in case of conflict in dependencies.
+
+    apt-get installs python modules in system-wide location. We cannot just install modules in our project virtualenv. pip solves this problem for us. If we are using pip after activating the virtualenv, it is intelligent enough to only install the modules in our project virtualenv. As mentioned in previous point, if there is a version of a particular python package already installed in system-wide location, and one of our project requires an older version of the same python package, in such situations we can use virtualenv and pip to install that older version of python package without any conflicts.
+
+    As @Radu Rădeanu pointed out in this answer, there would generally be difference in names of packages as well. Canonical usually names Python 2 packages as python-<package_name> and Python 3 packages as python3-<package_name>. Whereas for pip we generally just need to use <package_name> for both Python 2 as well as Python3 packages.
+
+Which one should you use:
+
+Both apt-get and pip are mature package managers which automatically install any other package dependency while installing. You may use anyone as you like. However, if you need to install a particular version of python-package, or install the package in a virtualenv, or install a package which is only hosted on PyPI; only pip would help you solve that issue. Otherwise, if you don't mind installing the packages in system-wide location it doesn't really matter whether you use apt-get or pip.
+#####################################################################################
+If you are using sudo apt install to install Python packages, these packages are managed by the system's package manager rather than pip. Here's how you can list the Python packages installed via apt:
+Listing Installed Python Packages Using apt
+
+To list installed Python packages installed via apt, you can use the following commands:
+
+    Open your terminal.
+
+    Run the following command:
+
+    bash
+
+    dpkg -l | grep python
+
+This command lists all packages with "python" in their name that are installed on your system via apt.
+Example Output
+
+The output might look something like this:
+
+bash
+
+ii  libpython3.7-minimal:amd64    3.7.5-2~18.04.3    amd64    Minimal subset of the Python language (version 3.7)
+ii  libpython3.7-stdlib:amd64     3.7.5-2~18.04.3    amd64    Interactive high-level object-oriented language (standard library, version 3.7)
+ii  python3                       3.7.5-1            amd64    interactive high-level object-oriented language (default python3 version)
+ii  python3-pip                   9.0.1-2.3~ubuntu1.18.04.1    all     Python package installer
+ii  python3.7                     3.7.5-2~18.04.3    amd64    Interactive high-level object-oriented language (version 3.7)
+
+Listing Installed Packages Using apt list
+
+Another way to list installed packages is using apt list:
+
+    Open your terminal.
+
+    Run the following command:
+
+    bash
+
+    apt list --installed | grep python
+
+This will give you a list of all installed packages with "python" in their names.
+Installing Required Libraries
+
+To ensure you have the required libraries (busio, digitalio, board, adafruit_rgb_display), you typically use pip to install them. However, if you prefer using apt, you may need to search for equivalent packages, though they might not always be available or up-to-date. Here's a general approach using pip:
+
+    Open your terminal.
+
+    Install the required libraries:
+
+    bash
+
+    sudo apt update
+    sudo apt install python3-pip
+    pip3 install adafruit-circuitpython-rgb-display
+
+Example Command Sequence
+
+Here is a sequence of commands to install the required packages and list all Python packages installed via apt:
+
+    Update your package lists:
+
+    bash
+
+sudo apt update
+
+Install pip if not already installed:
+
+bash
+
+sudo apt install python3-pip
+
+Install the required libraries using pip:
+
+bash
+
+pip3 install adafruit-circuitpython-rgb-display
+
+List installed Python packages managed by apt:
+
+bash
+
+    dpkg -l | grep python
+
+By following these steps, you can ensure you have the necessary libraries installed and also see which Python-related packages are managed by your system's package manager.
+############################################################################################
+installing pi 
+
+
+virtual enviroment :
+
+Creating a Virtual Environment
+
+    Navigate to Your Project Directory (or any directory where you want to create the virtual environment):
+
+    bash
+
+cd /path/to/your/project
+
+Create the Virtual Environment:
+
+For Linux/Mac:
+
+bash
+
+python3 -m venv venv
+
+For Windows:
+
+bash
+
+    python -m venv venv
+
+    Replace venv with any name you prefer for your virtual environment directory.
+
+Activating the Virtual Environment
+
+    Activate the Virtual Environment:
+
+    For Linux/Mac:
+
+    bash
+
+source venv/bin/activate
+
+For Windows:
+
+bash
+
+    venv\Scripts\activate
+
+Installing Modules
+
+    Install Required Modules:
+
+    Once the virtual environment is activated, use pip to install Python modules:
+
+    bash
+
+pip install adafruit-circuitpython-rgb-display
+
+If there are additional dependencies (e.g., busio, digitalio), install them similarly:
+
+bash
+
+    pip install adafruit-blinka busio digitalio
+
+Deactivating the Virtual Environment
+
+    Deactivate the Virtual Environment:
+
+    When you're done working in the virtual environment, you can deactivate it:
+
+    bash
+
+deactivate
+
+###########################################################################
+problemes with CE0 on the SPI0 :
+
+https://raspberrypi.stackexchange.com/questions/147320/bookworm-gpio-pins-8-and-17-busy
+
+
+-------------------------------------------------------------------
+
+The screen
+--------------
+
+Raspberry Pi Pin 1 (+3.3V) to Screen +5V
+Raspberry Pi Pin 6 (GND) to Screen GND
+Raspberry Pi Pin 23 (SCLK) to Screen SCL
+Raspberry Pi Pin 19 (MOSI) to Screen SDA
+Raspberry Pi Pin 18 (GPIO 24) to Screen RS/DC
+Raspberry Pi Pin 22 (GPIO 25) to Screen RES
+Raspberry Pi Pin 24 (CE0) to Screen CS
+
+
+PIN 1 (+3.3V): Provides a 3.3V power supply. If your screen operates at 5V, connect it to the 5V pin (PIN 2 or PIN 4).
+
+PIN 6 (GND): Ground pin. Connect to the ground pin of the screen to complete the circuit.
+
+PIN 23 (SCLK): Serial Clock Line for SPI communication. This pin provides the clock signal to synchronize data transmission.
+
+PIN 19 (MOSI): Master Out Slave In for SPI communication. This pin sends data from the Pi to the screen.
+
+PIN 18 (GPIO 24): General Purpose Input/Output pin, used here for the Register Select/Data Command (RS/DC) line to differentiate between commands and data.
+
+PIN 22 (GPIO 25): General Purpose Input/Output pin, used for the Reset (RES) line to reset the display.
+
+PIN 24 (CE0): Chip Enable 0, used to select the device for communication on the SPI bus.
+
+
+
+Adafruit CircuitPython RGB Display
+
+    Purpose: This library is used to interface with RGB displays via SPI using CircuitPython.
+    Documentation: The official documentation can be found on Adafruit’s GitHub repository.
+
+https://docs.circuitpython.org/projects/rgb_display/en/latest/
+
+https://github.com/adafruit/Adafruit_CircuitPython_RGB_Display
+
+https://docs.circuitpython.org/projects/rgb_display/en/latest/api.html#adafruit_rgb_display.st7735.ST7735R
+
+
+
