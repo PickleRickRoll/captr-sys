@@ -245,7 +245,7 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 800x448
+		Size: Discrete 800x448----------30fps
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -253,7 +253,11 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 864x480
+
+
+
+
+		Size: Discrete 864x480-------24fps
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -261,7 +265,10 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 960x544
+
+
+
+		Size: Discrete 960x544---------20
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -269,7 +276,13 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 1024x576
+
+
+
+
+
+
+		Size: Discrete 1024x576------------15
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -277,7 +290,10 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 800x600
+
+
+
+		Size: Discrete 800x600------24
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -285,6 +301,14 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
+
+
+
+
+
+
+
+---------------------15-------------------
 		Size: Discrete 1184x656
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
@@ -293,7 +317,9 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 960x720
+		
+
+		Size: Discrete 960x720 
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -301,6 +327,12 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
+
+
+
+
+----------------10------------------------
+
 		Size: Discrete 1280x720
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
@@ -309,7 +341,7 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 1392x768
+		Size: Discrete 1392x768 - 10fps
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -317,7 +349,12 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 1504x832
+		
+
+
+--------------------7.5-----------------------------
+
+Size: Discrete 1504x832
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -333,7 +370,7 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 1280x960
+		Size: Discrete 1280x960---7.5fps
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
@@ -341,7 +378,11 @@ ioctl: VIDIOC_ENUM_FMT
 			Interval: Discrete 0.100s (10.000 fps)
 			Interval: Discrete 0.133s (7.500 fps)
 			Interval: Discrete 0.200s (5.000 fps)
-		Size: Discrete 1712x960
+		
+
+
+------------5-------------------
+Size: Discrete 1712x960
 			Interval: Discrete 0.033s (30.000 fps)
 			Interval: Discrete 0.042s (24.000 fps)
 			Interval: Discrete 0.050s (20.000 fps)
